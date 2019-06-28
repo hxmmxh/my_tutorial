@@ -80,6 +80,6 @@ git diff命令
 4. 把本地库的内容推送到远程 `git push -u origin master`  
 由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
 5. 此后，只要在本地库进行了修改，就可以通过命令`git push origin master`把本地master分支的最新修改推送至GitHub
-```
 
+6. 如果出现`fatal: refusing to merge unrelated histories`错误，可以使用`git pull origin master --allow-unrelated-histories` 
 # vscode集成git操作
