@@ -76,7 +76,10 @@ git diff命令
 2. 获取该库的地址，有两种格式，ssh和https,用哪种都可以
 ![ssh](picture/learn_git/ssh_address.png)
 ![https](picture/learn_git/https_address.png)
-3. 
+3. 关联远程库：在Git Bash中输入指令`git remote add origin 第2步中获得的地址`
+4. 把本地库的内容推送到远程 `git push -u origin master`  
+由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+5. 此后，只要在本地库进行了修改，就可以通过命令`git push origin master`把本地master分支的最新修改推送至GitHub
 ```
 
 # vscode集成git操作
