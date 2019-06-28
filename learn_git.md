@@ -82,4 +82,5 @@ git diff命令
 5. 此后，只要在本地库进行了修改，就可以通过命令`git push origin master`把本地master分支的最新修改推送至GitHub
 
 6. 如果出现`fatal: refusing to merge unrelated histories`错误，可以使用`git pull origin master --allow-unrelated-histories` 
+7. 取消与库的绑定`git remote remove origin`
 # vscode集成git操作
