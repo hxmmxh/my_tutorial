@@ -12,6 +12,7 @@
 
 #define MAXLINE 4096
 #define SERV_PORT 3000
+#define LISTENQ 1024
 
 int main(int argc, char **argv)
 {
@@ -36,7 +37,7 @@ int main(int argc, char **argv)
 
     if ((bind(listenfd, (struct sockaddr *)&servaddr, sizeof(servaddr))) == -1)
     {
-        cout << "bind listen socket error.";
+        std::cout << "bind listen socket error.";
         return -1;
     }
 
@@ -58,7 +59,7 @@ int main(int argc, char **argv)
         rset = allset;
         nready = select(maxfd + 1, &rset, NULL, NULL, NULL);
         //监听描述符变得可读，代表有新的客户接入,因此调用accept获取新的已连接描述符
-        if (FD_ISSET(listenfd, % reset))
+        if (FD_ISSET(listenfd, &rset))
         {
             clilen = sizeof(cliaddr);
             connfd = accept(listenfd, (struct sockaddr *)&cliaddr, &clilen);
@@ -99,7 +100,7 @@ int main(int argc, char **argv)
                 }
                 else
                 {
-                    writen(sockfd, buf, n);
+                    write(sockfd, buf, n);
                 }
                 if (--nready <= 0)
                     break;
