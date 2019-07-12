@@ -63,7 +63,7 @@ int main(int argc, char **argv)
         {
             clilen = sizeof(cliaddr);
             connfd = accept(listenfd, (struct sockaddr *)&cliaddr, &clilen);
-            for (int i = 0; i < FD_SETSIZE; ++i)
+            for (i = 0; i < FD_SETSIZE; ++i)
                 if (client[i] < 0)
                 {
                     client[i] = connfd;

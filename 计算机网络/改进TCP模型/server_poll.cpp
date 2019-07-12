@@ -1,6 +1,7 @@
 #include <sys/types.h>  //
 #include <sys/socket.h> //socket,bind,connect,listen,accept,sockaddr_in,sockaddr
 #include <poll.h>       //poll
+#include <sys/stropts.h> //INFTIM
 #include <arpa/inet.h>  //地址转换函数
 #include <unistd.h>
 #include <iostream>
@@ -12,6 +13,9 @@
 
 #define MAXLINE 4096
 #define SERV_PORT 3000
+#define LISTENQ 1024
+#define INFTIM -1
+#define OPEN_MAX 1024
 
 int main()
 {
@@ -36,7 +40,7 @@ int main()
 
     if ((bind(listenfd, (struct sockaddr *)&servaddr, sizeof(servaddr))) == -1)
     {
-        cout << "bind listen socket error.";
+        std::cout << "bind listen socket error."<<std::endl;
         return -1;
     }
 
@@ -59,7 +63,7 @@ int main()
         {
             clilen = sizeof(cliaddr);
             connfd = accept(listenfd, (struct sockaddr *)&cliaddr, &clilen);
-            for (int i = 1; i < OPEN_MAX; ++i)
+            for (i = 1; i < OPEN_MAX; ++i)
                 if (client[i].fd < 0)
                 {
                     client[i].fd = connfd;
@@ -67,7 +71,7 @@ int main()
                 }
             if (i == OPEN_MAX)
             {
-                std::cout << "too many clients" << endl;
+                std::cout << "too many clients" << std::endl;
                 return -1;
             }
             client[i].events = POLLRDNORM;
@@ -91,7 +95,7 @@ int main()
                     }
                     else
                     {
-                        std::cout << "read error" << endl;
+                        std::cout << "read error" << std::endl;
                         return -1;
                     }
                 }
