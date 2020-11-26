@@ -17,3 +17,11 @@
 [C/C++ socket编程教程](https://blog.csdn.net/ctrl_qun/article/details/52454111)
 
 [epoll](https://blog.csdn.net/xiajun07061225/article/details/9250579)
+
+
+
+
+
+
+
+[程序终止写法](https://blog.csdn.net/jjf_jianFeng/article/details/90244688)
